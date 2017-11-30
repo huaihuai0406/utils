@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf8 -*-
-#
-#!/usr/bin/env python
-# -*- coding:utf8 -*-
-#
-# created by chenpengfei@ipin.com 2017/11/30
-#
 
 from lxml import html
-from lxml import etree
 import re
 
 
@@ -38,11 +31,13 @@ def get_value_by_tag_attr(dom, tag='*', attr='class', value='', item='text'):
         item = 'text()'
     else:
         item = '' + '@' + item
-    result = dom.xpath(xpath_string.format(tag=tag, attr=attr, value=value, item=item))
+    result = dom.xpath(
+        xpath_string.format(tag=tag, attr=attr, value=value, item=item))
     if is_valid_list_res(result):
         return result[0]
     else:
         return None
+
 
 def get_node_by_tag_attr(dom, tag='*', attr='class', value=''):
     """
@@ -53,7 +48,8 @@ def get_node_by_tag_attr(dom, tag='*', attr='class', value=''):
     :param value: 属性值
     :return: 节点或None
     """
-    xpath_string = './/{tag}[@{attr}="{value}"]'.format(tag=tag, attr=attr, value=value)
+    xpath_string = './/{tag}[@{attr}="{value}"]'.format(
+        tag=tag, attr=attr, value=value)
     node = dom.xpath(xpath_string)
     if is_valid_list_res(node):
         return node[0]
@@ -143,5 +139,3 @@ def get_attribute(node, attr_name):
     if is_valid_list_res(attr):
         return attr[0]
     return ''
-
-
